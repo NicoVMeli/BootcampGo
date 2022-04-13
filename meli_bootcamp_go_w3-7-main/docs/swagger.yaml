@@ -1,0 +1,61 @@
+definitions:
+  web.errorResponse:
+    properties:
+      code:
+        type: string
+      message:
+        type: string
+    type: object
+  web.response:
+    properties:
+      data: {}
+    type: object
+info:
+  contact: {}
+  description: This API Handle MELI Sprint
+  title: MELI Bootcamp Sprint
+  version: 1.0.0
+paths:
+  /api/v1/employees:
+    get:
+      consumes:
+      - application/json
+      description: get all employees
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/web.response'
+      summary: List employees
+  /api/v1/employees/{id}:
+    get:
+      consumes:
+      - application/json
+      description: get Employee by ID
+      parameters:
+      - description: Employee ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/web.response'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/web.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/web.errorResponse'
+      summary: Get Employee
+      tags:
+      - employees
+swagger: "2.0"
